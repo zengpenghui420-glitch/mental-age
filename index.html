@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#4A9B96">
+<meta name="description" content="心理年龄测试。18 道原创题，测你的心态与处事节奏画像。娱乐向自我观察，非正式心理测量。">
+<meta property="og:title" content="心理年龄测试 · 你的心理年龄到底多少岁">
+<meta property="og:description" content="六维画像 · 心理年龄 · 六档锐评 · 日历年龄感对照。娱乐向自我观察，非正式心理测量。">
+<meta property="og:url" content="https://zengpenghui420-glitch.github.io/mental-age/">
+<link rel="canonical" href="https://zengpenghui420-glitch.github.io/mental-age/">
+<title>心理年龄测试 · 你的心理年龄到底多少岁</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234A9B96'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23F5EDE0' stroke-width='2'/%3E%3Cpath d='M16 10v6l4 2' fill='none' stroke='%23C9924A' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#F4F8F7;--card:#FFFCFA;--ink:#24302C;--muted:#64706C;--faint:#8A9892;
+  --ink-deep:#1A2420;--teal:#4A9B96;--teal-deep:#2F6F6E;--amber:#C9924A;--amber-deep:#A67435;
+  --cream:#F5EDE0;--line:#D8E4E0;--panel:#E8F0EE;
+  --sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px)
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:#E6EEEC;color-scheme:light}
+body{
+  max-width:430px;margin:0 auto;min-height:100dvh;color:var(--ink);line-height:1.6;
+  font-family:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Noto Sans SC","WenQuanYi Micro Hei","Droid Sans Fallback","Microsoft YaHei",sans-serif;
+  background:
+    radial-gradient(circle at 12% -4%, rgba(74,155,150,.28), transparent 42%),
+    radial-gradient(circle at 96% 6%, rgba(201,146,74,.20), transparent 40%),
+    linear-gradient(180deg,#FFFCFA,#F4F8F7 48%,#F5EDE0);
+  overflow-x:hidden
+}
+body.lock{overflow:hidden}
+button,input{font-family:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+[hidden]{display:none !important}
+.screen{display:none}
+.screen.active{display:block}
+#start.active,#quiz.active,#loading.active{display:flex;flex-direction:column;min-height:100dvh}
+#loading.active{align-items:center;justify-content:center;text-align:center;padding:24px}
+#start{padding:calc(22px + var(--st)) 22px calc(22px + var(--sb));text-align:center}
+.mark{width:120px;height:120px;margin:8px auto 10px}
+.mark svg{width:100%;height:auto;display:block}
+.eyebrow{font-size:12px;letter-spacing:3px;color:var(--teal-deep);font-weight:600;margin-bottom:8px}
+h1{font-size:26px;line-height:1.35;font-weight:700;letter-spacing:.5px;margin-bottom:8px;color:var(--ink-deep)}
+.sub{font-size:16px;color:#3E524C;margin-bottom:8px}
+.warm{font-size:13px;color:var(--muted);margin-bottom:14px}
+.dim-intro{list-style:none;text-align:left;display:flex;flex-direction:column;gap:8px;margin:0 0 16px}
+.dim-intro li{display:flex;gap:10px;align-items:center;background:rgba(255,252,250,.94);border:1px solid var(--line);border-radius:16px;padding:8px 12px}
+.dim-intro i{flex:0 0 28px;width:28px;height:28px;border-radius:9px;background:rgba(74,155,150,.22);color:#2F6F6E;font-style:normal;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.dim-intro b{display:block;font-size:14px;line-height:1.3}
+.dim-intro span{display:block;font-size:12px;color:var(--muted);line-height:1.45}
+.pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+.pill{padding:5px 10px;border-radius:999px;background:rgba(255,252,250,.94);border:1px solid var(--line);color:#3E524C;font-size:12px}
+.btn-primary{width:100%;padding:15px 16px;border:none;border-radius:28px;background:linear-gradient(180deg,#4A9B96,#2F6F6E);color:#F7FFFE;font-size:17px;font-weight:700;box-shadow:0 8px 18px rgba(47,111,110,.28)}
+.btn-primary:active{transform:scale(.98)}
+.btn-primary:disabled{opacity:.65}
+.btn-ghost{width:100%;margin-top:10px;padding:13px 16px;border-radius:28px;border:1.5px solid #C5D6D2;background:rgba(255,252,250,.94);color:#3E524C;font-size:15px;font-weight:600}
+.btn-ghost:active{transform:scale(.98)}
+.hint{margin-top:14px;font-size:12px;color:var(--faint);line-height:1.6}
+.disclaimer{margin-top:16px;padding:12px 12px 12px 14px;background:#F5EDE0;border:1px solid #E4D6C0;border-left:4px solid var(--amber);border-radius:14px;color:#24302C;font-size:13px;line-height:1.7;text-align:left}
+.disclaimer strong{font-weight:700}
+.safety{margin:4px 0 12px;padding:12px 12px 12px 14px;background:#E8F0EE;border:1px solid #C5D6D2;border-left:4px solid var(--teal);border-radius:14px;color:#24302C;font-size:13px;line-height:1.7}
+.qh{padding:14px 18px 12px;background:rgba(244,248,247,.94);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(8px)}
+.qrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.qback{background:none;border:none;color:var(--muted);font-size:14px;padding:4px 0}
+.qprog{font-size:13px;color:var(--teal-deep);font-weight:700}
+.track{height:6px;background:#D8E4E0;border-radius:3px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#7BBDB8,#4A9B96);border-radius:3px;transition:width .3s}
+.qbody{padding:22px 20px 28px}
+.qno{font-size:12px;letter-spacing:2px;color:var(--teal-deep);font-weight:700;margin-bottom:8px}
+.qtext{font-size:20px;font-weight:700;line-height:1.5;margin-bottom:18px;color:var(--ink-deep)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px 14px;background:rgba(255,252,250,.96);border:1.5px solid var(--line);border-radius:16px;color:var(--ink);font-size:15px;box-shadow:0 3px 0 rgba(216,228,224,.9)}
+.opt .onum{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:rgba(74,155,150,.22);color:#2F6F6E;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.opt.sel,.opt:active{border-color:var(--teal);background:rgba(74,155,150,.14);color:#1A2420}
+.opt.sel .onum{background:var(--teal-deep);color:#F7FFFE}
+.loader{width:40px;height:40px;border:3px solid #D8E4E0;border-top-color:var(--teal-deep);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 16px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.load-title{font-weight:700;color:var(--ink-deep)}
+.load-sub{margin-top:6px;font-size:13px;color:var(--faint)}
+#result{padding-bottom:calc(196px + var(--sb))}
+.rtop{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(244,248,247,.94);border-bottom:1px solid var(--line);font-size:14px;font-weight:700;backdrop-filter:blur(8px)}
+.rtop span:last-child{font-weight:500;color:#3E524C;font-size:13px}
+.result-body{padding:16px 16px 8px}
+.card{position:relative;background:linear-gradient(180deg,rgba(255,252,250,.98),rgba(244,248,247,.94));border:1px solid var(--line);border-radius:22px;padding:18px 16px 16px;margin-bottom:12px;box-shadow:0 10px 24px rgba(26,36,32,.05)}
+.kicker{font-size:12px;letter-spacing:4px;color:var(--teal-deep);font-weight:700}
+.index-num{font-size:56px;line-height:.95;font-weight:700;color:var(--ink-deep);letter-spacing:-1px;margin:4px 0 2px}
+.index-max{font-size:12px;color:var(--faint);margin-bottom:10px}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap}
+.lv{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(74,155,150,.22);color:#2F6F6E;font-size:13px;font-weight:700}
+.lv-line{margin-top:8px;font-size:14px;color:#2E3E38;line-height:1.65}
+.lead{margin-top:14px;font-size:12px;letter-spacing:2px;color:#3E524C;font-weight:700}
+.type-title{font-size:28px;line-height:1.25;margin:4px 0 6px;color:var(--ink-deep)}
+.punch{font-size:15px;line-height:1.7;color:#2E3E38}
+.egg{margin-top:10px;padding:8px 10px;border-radius:12px;background:rgba(201,146,74,.14);color:#8A5E22;font-size:13px;line-height:1.55}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tag{padding:4px 10px;border-radius:999px;background:rgba(74,155,150,.16);color:#2F6F6E;font-size:12px;font-weight:600}
+.note{margin-top:10px;font-size:12px;color:var(--muted);line-height:1.6}
+.st{font-size:16px;font-weight:700;letter-spacing:1px;margin-bottom:12px}
+.st:before{content:"";display:inline-block;width:7px;height:7px;margin-right:8px;border-radius:2px;background:var(--teal);transform:translateY(-1px) rotate(45deg)}
+.fine{margin-top:10px;font-size:12px;color:var(--muted);line-height:1.65}
+.radar-box svg{width:100%;height:auto;display:block}
+.bar{margin-top:12px}
+.bar-h{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:700}
+.bar-h b{color:var(--teal-deep);font-size:16px}
+.bar-track{height:8px;background:#D8E4E0;border-radius:99px;overflow:hidden;margin-top:4px}
+.bar-fill{height:100%;width:0;background:linear-gradient(90deg,#7BBDB8,#4A9B96);border-radius:99px}
+.bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+.bullets li{position:relative;padding-left:14px;font-size:14.5px;line-height:1.7;color:#1A2420}
+.bullets li:before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--teal-deep)}
+.score-grid{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+.dim-read{padding:12px 0;border-top:1px solid var(--line)}
+.dim-read:first-of-type{border-top:none;padding-top:0}
+.dim-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.dn{font-size:14px;font-weight:700}
+.ds{font-size:18px;font-weight:700;color:#3E524C}
+.dim-read p{margin-top:4px;font-size:13.5px;color:var(--muted);line-height:1.7}
+#result .disclaimer{margin:4px 0 12px}
+.acts{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:8px 12px calc(10px + var(--sb));background:rgba(255,252,250,.97);border-top:1px solid var(--line);z-index:20;display:flex;flex-direction:column;gap:6px}
+.acts-note{font-size:11px;color:var(--muted);text-align:center;line-height:1.45}
+.acts-row{display:flex;gap:8px}
+.acts-row button{flex:1;padding:11px 4px;border-radius:22px;font-size:13px;font-weight:700}
+.bo{border:1.5px solid #C5D6D2;background:#fff;color:#3E524C}
+.bp{border:none;background:linear-gradient(180deg,#4A9B96,#2F6F6E);color:#F7FFFE}
+.ov{position:fixed;inset:0;background:rgba(26,36,32,.82);z-index:200;display:none;flex-direction:column;align-items:center;padding:16px 16px calc(16px + var(--sb));overflow-y:auto}
+.ov.show{display:flex}
+.ov img{width:min(100%,400px);border-radius:16px;background:#F4F8F7}
+.ovh{color:#F7FFFE;font-size:14px;margin:8px 0 12px}
+.ovb{display:flex;gap:10px;width:100%;max-width:400px;margin-top:12px}
+.ovb button{flex:1;padding:12px;border:none;border-radius:22px;font-size:15px;font-weight:700}
+.ovb .save{background:#fff;color:var(--ink)}
+.ovb .shut{background:rgba(255,252,250,.16);color:#F7FFFE}
+.toast{position:fixed;bottom:calc(210px + var(--sb));left:50%;transform:translateX(-50%);background:rgba(26,36,32,.92);color:#F7FFFE;padding:10px 16px;border-radius:20px;font-size:13px;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none;max-width:88%;text-align:center}
+.toast.show{opacity:1}
+.code-mask{position:fixed;inset:0;background:rgba(26,36,32,.48);z-index:150;display:none;align-items:center;justify-content:center;padding:20px}
+.code-mask.show{display:flex}
+.code-panel-wrap{position:relative;width:100%;max-width:340px}
+.code-panel{background:#FFFCFA;border:1.5px solid var(--line);border-radius:22px;padding:24px 18px 18px;box-shadow:0 16px 40px rgba(26,36,32,.2);text-align:center}
+.code-panel h3{font-size:18px;margin-bottom:14px;color:var(--ink-deep)}
+.code-panel input{width:100%;padding:14px 12px;border:1.5px solid var(--line);border-radius:14px;font-size:18px;letter-spacing:2px;text-align:center;color:var(--ink);background:#F4F8F7;outline:none}
+.code-panel input:focus{border-color:var(--teal);background:#fff}
+.code-panel .btn-primary{margin-top:12px}
+.code-hint{margin-top:12px;font-size:12px;color:var(--faint);line-height:1.6}
+.code-close{position:absolute;top:8px;right:12px;background:none;border:none;font-size:22px;color:var(--faint);line-height:1;padding:4px}
+@media (prefers-reduced-motion:reduce){.fill,.toast,.bar-fill{transition:none}.loader{animation:none}}
+</style>
+</head>
+<body>
+<section id="start" class="screen active">
+  <div class="mark" aria-hidden="true">
+    <svg viewBox="0 0 120 120">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#7BBDB8"/>
+          <stop offset="100%" stop-color="#4A9B96"/>
+        </linearGradient>
+      </defs>
+      <rect x="8" y="8" width="104" height="104" rx="28" fill="#F5EDE0"/>
+      <rect x="8" y="8" width="104" height="104" rx="28" fill="none" stroke="#D8E4E0" stroke-width="2"/>
+      <circle cx="60" cy="58" r="28" fill="none" stroke="url(#g1)" stroke-width="5"/>
+      <path d="M60 38v22l14 8" fill="none" stroke="#C9924A" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="60" cy="58" r="3.5" fill="#2F6F6E"/>
+    </svg>
+  </div>
+  <p class="eyebrow">娱乐向 · 自我观察</p>
+  <h1>心理年龄测试</h1>
+  <p class="sub">你的心理年龄到底多少岁</p>
+  <p class="warm">锐利但温柔 · 测的是近期心态与处事节奏，不是成熟度判决</p>
+  <ul class="dim-intro">
+    <li><i>P</i><div><b>玩心与游戏感</b><span>还给快乐/想象留空间吗</span></div></li>
+    <li><i>R</i><div><b>责任与节律</b><span>承诺、后果、长期稳定</span></div></li>
+    <li><i>E</i><div><b>情绪节拍</b><span>冲动控制、恢复、被批评时</span></div></li>
+    <li><i>C</i><div><b>好奇开放</b><span>新事物、新想法还能否点燃你</span></div></li>
+    <li><i>S</i><div><b>人际分寸</b><span>边界、共情、冲突里的成熟度</span></div></li>
+    <li><i>T</i><div><b>节奏耐心</b><span>规划 vs 即兴、耐心 vs 急躁</span></div></li>
+  </ul>
+  <div class="pills"><span class="pill">18 道题</span><span class="pill">六维雷达</span><span class="pill">心理年龄画像</span></div>
+  <button class="btn-primary" id="btnStart" type="button">开始测试</button>
+  <button class="btn-ghost" id="btnLast" type="button" hidden>查看上次结果</button>
+  <p class="hint">单选 · 心理年龄无好坏 · 仅娱乐向自我观察</p>
+  <p class="disclaimer" id="startDisclaimer"></p>
+</section>
+
+<section id="quiz" class="screen">
+  <div class="qh">
+    <div class="qrow"><button class="qback" id="qback" type="button">← 返回</button><span class="qprog" id="qprog"></span></div>
+    <div class="track"><div class="fill" id="fill"></div></div>
+  </div>
+  <div class="qbody">
+    <div class="qno" id="qno"></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </div>
+</section>
+
+<section id="loading" class="screen">
+  <div class="loader"></div>
+  <div class="load-title">正在校准心理时钟…</div>
+  <div class="load-sub">六维节拍对齐中</div>
+</section>
+
+<section id="result" class="screen">
+  <div class="rtop"><span>心理年龄测试</span><span id="resultMeta"></span></div>
+  <div class="result-body" id="resultBody"></div>
+  <div class="acts">
+    <p class="acts-note">娱乐向自我观察 · 非正式心理测量 · 心理年龄无好坏</p>
+    <div class="acts-row">
+      <button class="bo" id="btnViewLast" type="button">查看上次</button>
+      <button class="bo" id="btnCopy" type="button">复制文案</button>
+      <button class="bp" id="btnImg" type="button">生成卡片</button>
+    </div>
+    <div class="acts-row">
+      <button class="bp" id="btnRetry" type="button" style="flex:1">重新测试</button>
+    </div>
+  </div>
+</section>
+
+<div class="code-mask" id="codeMask" aria-hidden="true">
+  <div class="code-panel-wrap">
+    <button class="code-close" id="codeClose" type="button" aria-label="关闭">×</button>
+    <div class="code-panel">
+      <h3>输入验证码</h3>
+      <input id="codeInput" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" maxlength="8" placeholder="MAXXXX" aria-label="验证码">
+      <button class="btn-primary" id="btnCodeOk" type="button">开始答题</button>
+      <p class="code-hint">每码可测 3 次。重新测试会再扣 1 次；查看上次结果不扣次。</p>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="ov" aria-hidden="true">
+  <p class="ovh">长按图片保存，或点下方下载</p>
+  <img id="shareImg" alt="分享卡片">
+  <div class="ovb">
+    <button class="save" id="btnDl" type="button">下载图片</button>
+    <button class="shut" id="btnClose" type="button">关闭</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript><p style="padding:24px;text-align:center">请开启 JavaScript 后使用本测验。</p></noscript>
+<script>
+const API_BASE='https://snappy-tundra-7uesdvk.tmp.now';
+const QUIZ_KEY='mental';
+const ACCESS_KEY='mental_unlocked';
+const ACCESS_CODE_KEY='mental_code';
+const LAST_KEY='mental_last_result';
+const CODE_RE=/^MA[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{4}$/i;
+const URL_='https://zengpenghui420-glitch.github.io/mental-age/';
+const DISCLAIMER='本测试为娱乐向自我观察，非正式心理测量，不能替代专业心理评估或临床诊断。「心理年龄」只是对你近期心态与处事节奏的趣味画像，不是成熟度判决，也不代表你该变成谁；结果会受当下情绪与作答状态影响。';
+const SAFETY_NOTE='心理年龄没有标准答案。偏年轻或偏稳都有其适应优势；若你正经历持续的情绪困扰或功能受损，请优先寻求现实支持。';
+const FONT='"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Noto Sans SC","WenQuanYi Micro Hei","Droid Sans Fallback","Microsoft YaHei",sans-serif';
+const CHOICES=[{v:1,t:'完全不像我'},{v:2,t:'不太像'},{v:3,t:'说不清'},{v:4,t:'有点像'},{v:5,t:'非常像我'}];
+const DIM_IDS=['P','R','E','C','S','T'];
+const DIM_META={
+  P:{name:'玩心与游戏感', tip:'还给快乐/想象留空间吗', high:'日常里仍会冒出「好玩」，肯给自己开小窗', low:'更紧绷务实，玩心被压得很扁',
+    engine:'你的心理时钟主轴是「玩心与游戏感」：快乐与想象，仍是你续航的重要来源。'},
+  R:{name:'责任与节律', tip:'承诺、后果、长期稳定', high:'答应了就尽量落地，先想影响面', low:'计划易飘，「以后再说」很轻松',
+    engine:'你的心理时钟主轴是「责任与节律」：承诺与后果感，让你的日子有底座。'},
+  E:{name:'情绪节拍', tip:'冲动控制、恢复、被批评时', high:'能压火、能回血，少被一点小事掀翻', low:'情绪易炸或沉底，恢复慢',
+    engine:'你的心理时钟主轴是「情绪节拍」：压火与回血的能力，决定你处事的稳度。'},
+  C:{name:'好奇开放', tip:'新事物、新想法还能否点燃你', high:'愿意点开陌生领域，先听再说', low:'更黏熟悉套路，新东西觉得累',
+    engine:'你的心理时钟主轴是「好奇开放」：新想法还能点燃你，时钟就不会生锈。'},
+  S:{name:'人际分寸', tip:'边界、共情、冲突里的成熟度', high:'能就事论事，知道进退留白', low:'易被带节奏，边界说不清',
+    engine:'你的心理时钟主轴是「人际分寸」：边界与共情，是你关系里的成熟刻度。'},
+  T:{name:'节奏耐心', tip:'规划 vs 即兴、耐心 vs 急躁', high:'肯为远期动手，等得住慢活', low:'「现在就要」，慢一步就焦',
+    engine:'你的心理时钟主轴是「节奏耐心」：等得住与看得远，比当下速度更关键。'}
+};
+
+const QS=[
+  {id:'P1', dim:'P', t:'看到路边小狗、奇怪的云或临时小摊，你会忍不住停一下，心里冒出一点「好玩」。'},
+  {id:'P2', dim:'P', t:'和朋友开玩笑、扮傻、玩梗，对你来说还是放松关系的重要方式。'},
+  {id:'P3', dim:'P', rev:true, t:'你觉得认真过日子就该少玩少闹，玩心多少有点不务正业。'},
+  {id:'R1', dim:'R', t:'答应别人的事，就算后来觉得麻烦，你也更倾向硬着头皮做完。'},
+  {id:'R2', dim:'R', t:'你习惯先想后果：这件事拖下去会怎样、谁会受影响。'},
+  {id:'R3', dim:'R', rev:true, t:'计划经常说改就改；「以后再说」对你来说很轻松。'},
+  {id:'E1', dim:'E', t:'被当面批评或否定时，你能先把火压住，过一会儿再回应。'},
+  {id:'E2', dim:'E', t:'心情翻车后，你通常有办法让自己慢慢回血，而不是整天沉底。'},
+  {id:'E3', dim:'E', rev:true, t:'一点小事就能把你整天的情绪掀翻，很难自己拉回来。'},
+  {id:'C1', dim:'C', t:'听到从没接触过的领域，你会想点开看看，而不是直接划走。'},
+  {id:'C2', dim:'C', t:'别人提出跟你习惯相反的做法时，你愿意先听听再说。'},
+  {id:'C3', dim:'C', rev:true, t:'你更愿意待在熟悉的套路里，新事物常常让你觉得累。'},
+  {id:'S1', dim:'S', t:'冲突里你能分清「就事论事」和「伤人」，尽量不把话说绝。'},
+  {id:'S2', dim:'S', t:'你大致知道什么时候该撑场、什么时候该退一步留白。'},
+  {id:'S3', dim:'S', rev:true, t:'你很容易被别人的情绪带着走，边界说不清也守不住。'},
+  {id:'T1', dim:'T', t:'你愿意为几个月后才见效的事今天就动手，不太需要即时回报。'},
+  {id:'T2', dim:'T', t:'排队、等待、慢活对你来说可以接受，不一定样样立刻搞定。'},
+  {id:'T3', dim:'T', rev:true, t:'你很难忍住「现在就要」：慢一步就焦，拖一天就烦。'}
+];
+
+const TIERS=[
+  {id:'FEATHER', min:12, max:18, name:'轻羽未落 · 心在玩场', punch:'你把快乐与想象留得很开，日历未必跟得上',
+    tags:['玩心开着','好奇在线','轻松续航'],
+    ageFeel:'若用「日历年龄感」来对照：你的心态更像还在操场边喘气的那段——不是幼稚，是还肯给自己留玩的缝。别人若说你「还像小孩」，多半在羡慕你的续航。',
+    traits:[
+      '玩心与好奇仍是你日常的主色，规则感相对靠后。',
+      '小事也能点燃你：路边风景、朋友的梗、突然的想象。',
+      '承诺与长期规划有时会飘，情绪也更容易被掀一下。',
+      '人际上可能边界还在学，冲突里更凭感觉进退。',
+      '这不是缺陷：偏年轻的心态常带来弹性与恢复力。'
+    ],
+    advice:[
+      '把玩心留下，同时给自己一两件「说到做到」的小承诺练手。',
+      '情绪掀翻时，先给自己 10 分钟冷却，再回话。',
+      '边界可以练：先从「我现在需要一点空」说出口开始。',
+      '别急着把自己「变成熟」；观察触发点比贴标签有用。'
+    ]},
+  {id:'SPROUT', min:19, max:25, name:'青枝探路 · 边撞边懂', punch:'责任在长，好奇还在点火，时钟停在「正在成型」',
+    tags:['成型期','边学边扛','仍会点开'],
+    ageFeel:'对照「日历年龄感」：你像刚走出校园、边撞边懂的那几年——责任在长，好奇没灭。心理时钟停在「正在成型」，比「已经定型」更真实。',
+    traits:[
+      '责任与玩心并存：你开始扛事，也不肯把好奇交出去。',
+      '情绪节拍在练：有时能压火，有时还是会被带跑。',
+      '对新事物仍愿意点开，熟悉套路还没把你锁死。',
+      '人际分寸在学：知道该留白，但偶尔仍会说绝或被带节奏。',
+      '耐心与急躁拉锯——长期事想做，当下又容易焦。'
+    ],
+    advice:[
+      '把「正在成型」当成阶段，而不是缺陷。',
+      '选一两件远期小事坚持做，练节奏耐心。',
+      '冲突后用「就事论事」复盘一次，比翻旧账有用。',
+      '好奇留下；用小实验代替全盘推翻生活。'
+    ]},
+  {id:'HALF', min:26, max:33, name:'熟果半开 · 稳里留活', punch:'你懂规则，也不肯把玩心全交出去',
+    tags:['稳里留缝','会扛也会玩','弹性成熟'],
+    ageFeel:'对照「日历年龄感」：你更像果子半开的年纪——外皮已经懂事，里头仍留汁水。别人觉得你靠谱，你自己还记得怎么笑、怎么好奇。',
+    traits:[
+      '懂规则也留缝：承诺与玩心不再二选一。',
+      '情绪大体回得来，偶尔仍会被小事绊一下。',
+      '对新想法开放，但会先掂量再跳。',
+      '人际上能进退，冲突里较少把话说死。',
+      '节奏上既肯规划，也允许即兴插队。'
+    ],
+    advice:[
+      '稳里留活：刻意给自己留「无用但好玩」的时段。',
+      '把分寸用在关系里，也用在对自己——别过度自责。',
+      '长期目标拆成周节奏，减少「现在就要」的焦。',
+      '玩心不是退步；它是防止你僵成木头的润滑剂。'
+    ]},
+  {id:'TIMBER', min:34, max:42, name:'暖木成材 · 节律自持', punch:'承诺与分寸已成习惯，偶尔还给自己开扇小窗',
+    tags:['节律自持','分寸成习','偶开小窗'],
+    ageFeel:'对照「日历年龄感」：你更像木头成材的阶段——扛得住、分得清，日子有节律。记得给自己留扇窗：太稳有时会忘了喘口气。',
+    traits:[
+      '承诺与后果感已成习惯，计划较少说飘就飘。',
+      '情绪更能压火回血，较少被一点小事掀翻整天。',
+      '好奇仍在，但会筛：值得点开的才点开。',
+      '人际分寸清晰，冲突里更会留白与就事论事。',
+      '耐心偏强，肯为几个月后的结果今天动手。'
+    ],
+    advice:[
+      '节律很好，但别把日程排到没有缝。',
+      '偶尔故意做一件「没效率但开心」的小事。',
+      '对亲近的人，把「我累了需要空」说清楚。',
+      '成熟可以很暖，不必用严厉证明自己长大了。'
+    ]},
+  {id:'AMBER', min:43, max:52, name:'沉香落定 · 处事有根', punch:'情绪与人际更沉得住，时间感偏长期',
+    tags:['沉得住','长期视角','有根'],
+    ageFeel:'对照「日历年龄感」：你更像沉香落定——不慌不闹，时间感拉长。别人靠你稳，你也要记得：稳不是唯一美德，玩心与好奇仍是养分。',
+    traits:[
+      '情绪与人际更沉得住，冲突里少爆炸多分量。',
+      '责任与耐心明显，长期视角强于即时刺激。',
+      '玩心可能被压扁一些，需要刻意唤回。',
+      '对新事物开放度中等：更挑、更稳，少冲动尝鲜。',
+      '分寸清晰，边界守得住，有时也会显得「太懂事」。'
+    ],
+    advice:[
+      '给玩心留位：每周留一点无目的时间。',
+      '长期视角很好，别用来否定别人的急与轻。',
+      '被批评时，允许自己先不适，再谈「沉得住」。',
+      '好奇可以慢热，但别完全关掉点火开关。'
+    ]},
+  {id:'TEA', min:53, max:65, name:'晚茶澄心 · 从容见远', punch:'你更像把日子泡开的人：不急、不慌、看得清',
+    tags:['从容','见远','泡开的日子'],
+    ageFeel:'对照「日历年龄感」：你更像一盏晚茶——温度下来了，味道反而清楚。别人或许羡慕你的从容；你自己也要记得，从容不是要求所有人都放慢。',
+    traits:[
+      '处事从容，急躁少，长期与分寸感都很强。',
+      '情绪恢复偏稳，较少被琐事整天拖走。',
+      '玩心与好奇可能偏安静：不是没有，是不张扬。',
+      '人际上成熟度高，冲突里更愿留白、少伤人。',
+      '时间观偏远：即时回报吸引力下降。'
+    ],
+    advice:[
+      '从容是优势；别用「你该稳一点」压迫身边偏年轻的人。',
+      '偶尔主动靠近一点新事物，给时钟加点活水。',
+      '把经验分享成邀请，而不是判决。',
+      '若感到僵或空，优先检查是不是玩心与连接太少。'
+    ]}
+];
+
+let ans=[], qi=0, picking=false, codeBusy=false, current=null, order=[];
+
+function $(id){return document.getElementById(id)}
+function el(tag, cls, text){
+  const n=document.createElement(tag);
+  if(cls) n.className=cls;
+  if(text!=null) n.textContent=text;
+  return n;
+}
+function esc(s){return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function toast(msg){
+  const t=$('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(toast._tm);
+  toast._tm=setTimeout(()=>t.classList.remove('show'),2200);
+}
+function itemScore(q,v){return q.rev?6-v:v}
+function to100(mean){return Math.round(Math.max(0,Math.min(100,((mean-1)/4)*100)))}
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    const t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+function scoreFromAnswers(list){
+  const buckets={P:[],R:[],E:[],C:[],S:[],T:[]};
+  list.forEach((v,i)=>{
+    const q=QS[order[i]];
+    buckets[q.dim].push(itemScore(q,v));
+  });
+  const scores={};
+  DIM_IDS.forEach(id=>{
+    const arr=buckets[id];
+    const mean=arr.reduce((s,x)=>s+x,0)/arr.length;
+    scores[id]=to100(mean);
+  });
+  return scores;
+}
+function mentalAgeOf(scores){
+  // maturity = mean(R,E,S,T); youth = mean(P,C)
+  // age ≈ clamp(18 + (maturity-youth)/100*30 + (maturity/100)*20, 12, 65)
+  const maturity=(scores.R+scores.E+scores.S+scores.T)/4;
+  const youth=(scores.P+scores.C)/2;
+  const raw=18 + (maturity-youth)/100*30 + (maturity/100)*20;
+  return Math.round(Math.max(12, Math.min(65, raw)));
+}
+function tierOf(age){
+  const n=Math.max(12,Math.min(65,age));
+  for(const t of TIERS){
+    if(n>=t.min && n<=t.max) return t;
+  }
+  return TIERS[TIERS.length-1];
+}
+function dominantOf(scores){
+  let best=DIM_IDS[0], bestScore=scores[DIM_IDS[0]];
+  for(let i=1;i<DIM_IDS.length;i++){
+    const id=DIM_IDS[i];
+    if(scores[id]>bestScore){best=id;bestScore=scores[id]}
+  }
+  return best;
+}
+function analyze(scores){
+  const age=mentalAgeOf(scores);
+  const tier=tierOf(age);
+  const dom=dominantOf(scores);
+  return {
+    scores,
+    age,
+    index:age,
+    tierId:tier.id,
+    name:tier.name,
+    punch:tier.punch,
+    traits:tier.traits,
+    advice:tier.advice,
+    tags:tier.tags||[],
+    ageFeel:tier.ageFeel||'',
+    dominant:dom,
+    dominantName:DIM_META[dom].name,
+    engine:DIM_META[dom].engine
+  };
+}
+function fillDisclaimer(node){
+  node.textContent='';
+  const marks=['非正式心理测量','不能替代专业心理评估或临床诊断','不是成熟度判决'];
+  const re=new RegExp('('+marks.map(m=>m.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')');
+  DISCLAIMER.split(re).forEach(part=>{
+    if(marks.indexOf(part)>=0) node.appendChild(el('strong',null,part));
+    else if(part) node.appendChild(document.createTextNode(part));
+  });
+}
+function radarSVG(r){
+  const dims=DIM_IDS.map(id=>({name:DIM_META[id].name, score:r.scores[id]}));
+  const cx=220, cy=230, R=92, n=dims.length;
+  const pt=(i,v)=>{
+    const a=-Math.PI/2+(i*2*Math.PI)/n;
+    const rr=Math.max(0,Math.min(100,v))/100*R;
+    return [cx+rr*Math.cos(a), cy+rr*Math.sin(a)];
+  };
+  let rings='', axes='', nums='';
+  [25,50,75,100].forEach(k=>{
+    const pts=[];
+    for(let i=0;i<n;i++) pts.push(pt(i,k).map(v=>v.toFixed(1)).join(','));
+    const strong=k===50||k===100;
+    rings+='<polygon points="'+pts.join(' ')+'" fill="'+(k===100?'rgba(74,155,150,0.08)':'none')+'" stroke="'+(strong?'#C5D6D2':'#D8E4E0')+'" stroke-width="'+(strong?'1.6':'1')+'"/>';
+    const wedge=-Math.PI/3;
+    const sx=cx+(k/100)*R*Math.cos(wedge);
+    const sy=cy+(k/100)*R*Math.sin(wedge);
+    nums+='<text x="'+sx.toFixed(1)+'" y="'+sy.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#8A9892">'+k+'</text>';
+  });
+  for(let i=0;i<n;i++){
+    const p=pt(i,100);
+    axes+='<line x1="'+cx+'" y1="'+cy+'" x2="'+p[0].toFixed(1)+'" y2="'+p[1].toFixed(1)+'" stroke="#D8E4E0" stroke-width="1"/>';
+  }
+  const poly=dims.map((d,i)=>pt(i,d.score).map(v=>v.toFixed(1)).join(',')).join(' ');
+  const dots=dims.map((d,i)=>{
+    const p=pt(i,d.score);
+    return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="4.2" fill="#F4F8F7" stroke="#4A9B96" stroke-width="2"/>';
+  }).join('');
+  let labels='';
+  const halo=' stroke="#F4F8F7" stroke-width="4" paint-order="stroke"';
+  dims.forEach((d,i)=>{
+    const a=-Math.PI/2+(i*2*Math.PI)/n;
+    const lr=R+52;
+    const x=cx+lr*Math.cos(a);
+    const y=cy+lr*Math.sin(a);
+    const anchor=Math.abs(Math.cos(a))<0.35?'middle':(Math.cos(a)>0?'start':'end');
+    labels+='<text x="'+x.toFixed(1)+'" y="'+(y-8).toFixed(1)+'" text-anchor="'+anchor+'" font-size="12" fill="#1A2420"'+halo+'>'+esc(d.name)+'</text>';
+    labels+='<text x="'+x.toFixed(1)+'" y="'+(y+10).toFixed(1)+'" text-anchor="'+anchor+'" font-size="15" font-weight="700" fill="#3E524C"'+halo+'>'+d.score+'</text>';
+  });
+  const aria='六维雷达图，刻度 0 到 100。'+dims.map(d=>d.name+' '+d.score).join('，');
+  return '<svg viewBox="0 0 440 470" role="img" aria-label="'+esc(aria)+'">'+
+    rings+axes+
+    '<polygon points="'+poly+'" fill="rgba(74,155,150,0.36)" stroke="#2F6F6E" stroke-width="2.4" stroke-linejoin="round"/>'+
+    dots+nums+labels+'</svg>';
+}
+function renderResult(r){
+  current=r;
+  const root=$('resultBody');
+  root.textContent='';
+  $('resultMeta').textContent=r.name+' · '+r.age+'岁';
+
+  const hero=el('section','card');
+  hero.appendChild(el('p','kicker','心理年龄'));
+  hero.appendChild(el('p','index-num',String(r.age)));
+  hero.appendChild(el('p','index-max','趣味画像 · 约 12–65 岁映射'));
+  const badge=el('div','badge-row');
+  badge.appendChild(el('span','lv',r.tierId));
+  hero.appendChild(badge);
+  hero.appendChild(el('p','lead','当前档位'));
+  const title=el('h2','type-title',r.name);
+  title.id='typeTitle';
+  hero.appendChild(title);
+  hero.appendChild(el('p','punch',r.punch));
+  hero.appendChild(el('p','egg',r.engine));
+  const tags=el('div','tags');
+  tags.appendChild(el('span','tag','主导 · '+r.dominantName));
+  tags.appendChild(el('span','tag',r.tierId));
+  tags.appendChild(el('span','tag',r.age+' 岁感'));
+  (r.tags||[]).forEach(t=>tags.appendChild(el('span','tag',t)));
+  hero.appendChild(tags);
+  hero.appendChild(el('p','note','心理年龄是心态与处事节奏的趣味画像，不是成熟度判决。偏年轻或偏稳都有适应优势。主导维取六维最高分；并列时按 玩心→责任→情绪→好奇→分寸→节奏 优先。'));
+  root.appendChild(hero);
+
+  if(r.ageFeel){
+    const feel=el('section','card');
+    feel.appendChild(el('h2','st','与「日历年龄感」对照'));
+    feel.appendChild(el('p','punch',r.ageFeel));
+    feel.appendChild(el('p','fine','本测不收集你的真实年龄；对照文案只帮助理解档位气质，不是要求你对齐某个岁数。'));
+    root.appendChild(feel);
+  }
+
+  const radar=el('section','card');
+  radar.id='radarCard';
+  radar.appendChild(el('h2','st','六维雷达'));
+  const box=el('div','radar-box');
+  box.innerHTML=radarSVG(r);
+  radar.appendChild(box);
+  const grid=el('div','score-grid');
+  DIM_IDS.forEach(id=>{
+    const row=el('div','bar');
+    const h=el('div','bar-h');
+    h.appendChild(document.createTextNode(DIM_META[id].name));
+    h.appendChild(el('b',null,String(r.scores[id])));
+    row.appendChild(h);
+    const track=el('div','bar-track');
+    const fill=el('div','bar-fill');
+    fill.style.width=r.scores[id]+'%';
+    track.appendChild(fill);
+    row.appendChild(track);
+    grid.appendChild(row);
+  });
+  radar.appendChild(grid);
+  radar.appendChild(el('p','fine','外圈是 100。成熟侧（责任/情绪/分寸/节奏）相对年轻侧（玩心/好奇）越高，心理年龄越上移；这是趣味映射，不是好坏排序。'));
+  root.appendChild(radar);
+
+  const feat=el('section','card');
+  feat.appendChild(el('h2','st','特征表现'));
+  const ul=el('ul','bullets');
+  r.traits.forEach(t=>{const li=el('li');li.textContent=t;ul.appendChild(li)});
+  feat.appendChild(ul);
+  root.appendChild(feat);
+
+  const adv=el('section','card');
+  adv.appendChild(el('h2','st','相处 / 自处小建议'));
+  const ul2=el('ul','bullets');
+  r.advice.forEach(t=>{const li=el('li');li.textContent=t;ul2.appendChild(li)});
+  adv.appendChild(ul2);
+  root.appendChild(adv);
+
+  const dimCard=el('section','card');
+  dimCard.appendChild(el('h2','st','六维速读'));
+  DIM_IDS.forEach(id=>{
+    const block=el('div','dim-read');
+    const head=el('div','dim-head');
+    head.appendChild(el('span','dn',DIM_META[id].name+(id===r.dominant?' · 主导':'')));
+    head.appendChild(el('span','ds',String(r.scores[id])));
+    block.appendChild(head);
+    const tip=r.scores[id]>=67?DIM_META[id].high:(r.scores[id]<=33?DIM_META[id].low:DIM_META[id].tip);
+    block.appendChild(el('p',null,tip));
+    dimCard.appendChild(block);
+  });
+  root.appendChild(dimCard);
+
+  const safe=el('p','safety');
+  safe.textContent=SAFETY_NOTE;
+  root.appendChild(safe);
+
+  const disc=el('p','disclaimer');
+  fillDisclaimer(disc);
+  root.appendChild(disc);
+}
+function resultText(r){
+  return [
+    '【心理年龄测试】',
+    r.name+' · 心理年龄约 '+r.age+' 岁',
+    r.punch,
+    '主导维度：'+r.dominantName,
+    r.engine,
+    '六维：'+DIM_IDS.map(id=>DIM_META[id].name+r.scores[id]).join(' / '),
+    '特征：'+r.traits.slice(0,3).join('；'),
+    DISCLAIMER,
+    URL_
+  ].filter(Boolean).join('\n');
+}
+function copyText(){
+  if(!current) return;
+  const text=resultText(current);
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>toast('已复制结果文案')).catch(()=>fallbackCopy(text));
+  }else fallbackCopy(text);
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');
+  ta.value=text;document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');toast('已复制结果文案')}catch(e){toast('复制失败，请手动长按选择')}
+  document.body.removeChild(ta);
+}
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r);
+  ctx.closePath();
+}
+function wrapT(ctx,text,maxW){
+  const chars=String(text).split('');
+  const lines=[]; let line='';
+  for(const ch of chars){
+    const t=line+ch;
+    if(ctx.measureText(t).width>maxW && line){lines.push(line);line=ch}
+    else line=t;
+  }
+  if(line) lines.push(line);
+  return lines;
+}
+function drawRadarCanvas(ctx,cx,cy,R,scores){
+  const n=6;
+  const pt=(i,v)=>{
+    const a=-Math.PI/2+(i*2*Math.PI)/n;
+    const rr=Math.max(0,Math.min(100,v))/100*R;
+    return [cx+rr*Math.cos(a), cy+rr*Math.sin(a)];
+  };
+  [25,50,75,100].forEach(k=>{
+    ctx.beginPath();
+    for(let i=0;i<n;i++){
+      const p=pt(i,k);
+      if(i===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]);
+    }
+    ctx.closePath();
+    ctx.strokeStyle=k===100||k===50?'#C5D6D2':'#D8E4E0';
+    ctx.lineWidth=k===100?1.6:1;
+    ctx.stroke();
+  });
+  for(let i=0;i<n;i++){
+    const p=pt(i,100);
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(p[0],p[1]);
+    ctx.strokeStyle='#D8E4E0';ctx.lineWidth=1;ctx.stroke();
+  }
+  ctx.beginPath();
+  DIM_IDS.forEach((id,i)=>{
+    const p=pt(i,scores[id]);
+    if(i===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]);
+  });
+  ctx.closePath();
+  ctx.fillStyle='rgba(74,155,150,0.36)';
+  ctx.strokeStyle='#2F6F6E';
+  ctx.lineWidth=2.4;
+  ctx.fill();ctx.stroke();
+  DIM_IDS.forEach((id,i)=>{
+    const p=pt(i,scores[id]);
+    ctx.beginPath();ctx.arc(p[0],p[1],4,0,Math.PI*2);
+    ctx.fillStyle='#F4F8F7';ctx.strokeStyle='#4A9B96';ctx.lineWidth=2;ctx.fill();ctx.stroke();
+    const a=-Math.PI/2+(i*2*Math.PI)/n;
+    const lx=cx+(R+28)*Math.cos(a), ly=cy+(R+28)*Math.sin(a);
+    ctx.fillStyle='#1A2420';ctx.font='600 13px '+FONT;
+    ctx.textAlign=Math.abs(Math.cos(a))<0.35?'center':(Math.cos(a)>0?'left':'right');
+    ctx.fillText(DIM_META[id].name,lx,ly);
+  });
+}
+function buildShare(r){
+  const W=750, H=1280;
+  const cv=document.createElement('canvas');
+  cv.width=W;cv.height=H;
+  const x=cv.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,'#FFFCFA');g.addColorStop(1,'#F5EDE0');
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  function T(t,tx,ty,s,col,wt){x.fillStyle=col;x.font=(wt||'600')+' '+s+'px '+FONT;x.fillText(t,tx,ty)}
+  roundRect(x,40,48,W-80,H-96,28);
+  x.fillStyle='#FFFCFA';x.fill();
+  x.strokeStyle='#D8E4E0';x.lineWidth=2;x.stroke();
+  T('心理年龄测试',70,110,22,'#2F6F6E','700');
+  T(r.name,70,180,36,'#1A2420','700');
+  T('心理年龄约 '+r.age+' 岁',70,230,26,'#3E524C','700');
+  const punchLines=wrapT(Object.assign(x,{font:'500 24px '+FONT})||x, r.punch, W-160);
+  x.font='500 24px '+FONT;x.fillStyle='#2E3E38';
+  punchLines.slice(0,3).forEach((ln,i)=>x.fillText(ln,70,280+i*36));
+  drawRadarCanvas(x,W/2,560,140,r.scores);
+  let y=760;
+  x.font='600 22px '+FONT;x.fillStyle='#1A2420';x.fillText('特征表现',70,y);
+  y+=36;
+  x.font='400 20px '+FONT;x.fillStyle='#2E3E38';
+  r.traits.slice(0,3).forEach(t=>{
+    wrapT(x,'· '+t,W-160).slice(0,2).forEach(ln=>{x.fillText(ln,70,y);y+=30});
+    y+=8;
+  });
+  y=Math.max(y,1080);
+  x.font='400 16px '+FONT;x.fillStyle='#8A9892';
+  x.fillText('娱乐向 · 非正式心理测量 · 心理年龄无好坏',70,y);
+  x.fillText(URL_,70,y+28);
+  return cv.toDataURL('image/png');
+}
+function showShare(){
+  if(!current) return;
+  try{
+    const url=buildShare(current);
+    window.__shareUrl=url;
+    $('shareImg').src=url;
+    $('ov').classList.add('show');
+    $('ov').setAttribute('aria-hidden','false');
+  }catch(e){
+    console.error(e);
+    toast('生成卡片失败，请截图保存');
+  }
+}
+function renderQ(){
+  const total=QS.length;
+  const q=QS[order[qi]];
+  $('qprog').textContent=(qi+1)+' / '+total;
+  $('fill').style.width=((qi)/total*100)+'%';
+  $('qno').textContent='第 '+(qi+1)+' 题';
+  $('qtext').textContent=q.t;
+  const box=$('opts');
+  box.textContent='';
+  CHOICES.forEach(c=>{
+    const b=el('button','opt');
+    b.type='button';
+    const num=el('span','onum',String(c.v));
+    b.appendChild(num);
+    b.appendChild(document.createTextNode(c.t));
+    if(ans[qi]===c.v) b.classList.add('sel');
+    b.onclick=()=>pick(c.v);
+    box.appendChild(b);
+  });
+}
+function pick(v){
+  if(picking) return;
+  picking=true;
+  ans[qi]=v;
+  renderQ();
+  setTimeout(()=>{
+    if(qi<QS.length-1){qi++;picking=false;renderQ()}
+    else {picking=false;finish()}
+  },180);
+}
+function finish(){
+  show('loading');
+  setTimeout(()=>{
+    const scores=scoreFromAnswers(ans);
+    const report=analyze(scores);
+    try{
+      const saved=Object.assign({tierId:report.tierId,name:report.name,age:report.age,index:report.age,dominant:report.dominant,punch:report.punch,at:Date.now()}, scores);
+      localStorage.setItem(LAST_KEY, JSON.stringify(saved));
+    }catch(e){}
+    refreshLastBtn();
+    renderResult(report);
+    show('result');
+  },900);
+}
+function isUnlocked(){try{return sessionStorage.getItem(ACCESS_KEY)==='1'}catch(e){return false}}
+function setUnlocked(code){
+  try{
+    sessionStorage.setItem(ACCESS_KEY,'1');
+    if(code) sessionStorage.setItem(ACCESS_CODE_KEY,code);
+  }catch(e){}
+}
+function clearUnlock(){
+  try{
+    sessionStorage.removeItem(ACCESS_KEY);
+    sessionStorage.removeItem(ACCESS_CODE_KEY);
+  }catch(e){}
+}
+function sessionCode(){
+  try{return normalizeCode(sessionStorage.getItem(ACCESS_CODE_KEY)||'')}catch(e){return ''}
+}
+function normalizeCode(v){
+  return String(v||'')
+    .trim()
+    .replace(/[\uFF21-\uFF3A]/g, ch=>String.fromCharCode(ch.charCodeAt(0)-0xFF21+65))
+    .replace(/[\uFF10-\uFF19]/g, ch=>String.fromCharCode(ch.charCodeAt(0)-0xFF10+48))
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g,'');
+}
+function openCodeModal(prefill){
+  $('codeMask').classList.add('show');
+  $('codeMask').setAttribute('aria-hidden','false');
+  document.body.classList.add('lock');
+  const inp=$('codeInput');
+  if(prefill!=null) inp.value=prefill;
+  setTimeout(()=>inp.focus(),40);
+}
+function closeCodeModal(){
+  $('codeMask').classList.remove('show');
+  $('codeMask').setAttribute('aria-hidden','true');
+  document.body.classList.remove('lock');
+}
+function startQuiz(){
+  ans=[];qi=0;picking=false;
+  order=shuffle(QS.map((_,i)=>i));
+  closeCodeModal();
+  show('quiz');
+  renderQ();
+}
+function setCodeBusy(busy){
+  const btn=$('btnCodeOk');
+  btn.disabled=!!busy;
+  btn.textContent=busy?'验证中…':'开始答题';
+}
+function refreshLastBtn(){
+  let has=false;
+  try{has=!!localStorage.getItem(LAST_KEY)}catch(e){}
+  $('btnLast').hidden=!has;
+}
+function clampScore(n){
+  n=Number(n);
+  if(!Number.isFinite(n)) return null;
+  return Math.max(0, Math.min(100, Math.round(n)));
+}
+function showLast(){
+  let data=null;
+  try{data=JSON.parse(localStorage.getItem(LAST_KEY)||'null')}catch(e){data=null}
+  if(!data){toast('还没有上次结果');refreshLastBtn();return}
+  const scores={};
+  for(const id of DIM_IDS){
+    const v=clampScore(data[id]);
+    if(v==null){toast('还没有上次结果');refreshLastBtn();return}
+    scores[id]=v;
+  }
+  renderResult(analyze(scores));
+  show('result');
+  toast('已打开上次结果，本次不扣次');
+}
+async function apiFetch(url, opts){
+  const ctl=new AbortController();
+  const timer=setTimeout(()=>ctl.abort(),12000);
+  try{return await fetch(url, Object.assign({}, opts, {signal:ctl.signal}))}
+  finally{clearTimeout(timer)}
+}
+async function peekVault(code){
+  const r=await apiFetch(API_BASE+'/get?quiz='+encodeURIComponent(QUIZ_KEY)+'&code='+encodeURIComponent(code));
+  if(r.status===404) return null;
+  if(!r.ok) throw new Error('net '+r.status);
+  const data=await r.json();
+  if(!data||data.ok===false){
+    if(data&&(data.error==='not_found'||data.error==='invalid')) return null;
+    throw new Error((data&&data.error)||('net '+r.status));
+  }
+  return data;
+}
+async function redeemVault(code){
+  const r=await apiFetch(API_BASE+'/redeem',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({quiz:QUIZ_KEY,code})
+  });
+  let data=null;
+  try{data=await r.json()}catch(e){
+    if(r.status===404) return {ok:false,reason:'invalid'};
+    throw new Error('net '+r.status);
+  }
+  if(!data||!data.ok){
+    if(data&&data.error==='exhausted') return {ok:false,reason:'exhausted'};
+    if(r.status===404||(data&&(data.error==='not_found'||data.error==='invalid'))) return {ok:false,reason:'invalid'};
+    return {ok:false,reason:(data&&data.error)||('net '+r.status)};
+  }
+  return {ok:true,remaining:data.remaining,max:data.max||3};
+}
+async function tryUnlock(fromUrl){
+  if(codeBusy) return false;
+  const code=normalizeCode($('codeInput').value);
+  $('codeInput').value=code;
+  if(!code){if(!fromUrl) toast('请输入验证码');return false}
+  if(!CODE_RE.test(code)){if(!fromUrl) toast('验证码不正确');return false}
+  codeBusy=true;
+  setCodeBusy(true);
+  try{
+    const out=await redeemVault(code);
+    if(out.ok){
+      setUnlocked(code);
+      const left=out.remaining;
+      toast(left>0?('验证成功，还可以测 '+left+' 次'):'验证成功，这是本码最后一次');
+      startQuiz();
+      return true;
+    }
+    if(!fromUrl) toast(out.reason==='exhausted'?'此验证码已用完（每个码限 3 次）':'验证码不正确');
+    return false;
+  }catch(e){
+    console.error(e);
+    if(!fromUrl) toast('网络异常，请稍后重试');
+    return false;
+  }finally{
+    codeBusy=false;
+    setCodeBusy(false);
+  }
+}
+
+$('btnStart').onclick=()=>{if(isUnlocked()){startQuiz();return} openCodeModal(null)};
+$('btnLast').onclick=()=>showLast();
+$('btnViewLast').onclick=()=>showLast();
+$('btnCodeOk').onclick=()=>tryUnlock(false);
+$('codeInput').addEventListener('keydown',e=>{if(e.key==='Enter') tryUnlock(false)});
+$('codeInput').addEventListener('input',()=>{
+  const input=$('codeInput');
+  const v=input.value.toUpperCase();
+  if(v!==input.value){const p=input.selectionStart;input.value=v;try{input.setSelectionRange(p,p)}catch(e){}}
+});
+$('codeClose').onclick=closeCodeModal;
+$('codeMask').addEventListener('click',e=>{if(e.target===$('codeMask')) closeCodeModal()});
+$('qback').onclick=()=>{
+  if(picking) return;
+  if(qi>0){qi--;renderQ()}
+  else show('start');
+};
+$('btnRetry').onclick=()=>{
+  let pre='';
+  try{pre=sessionStorage.getItem(ACCESS_CODE_KEY)||''}catch(e){}
+  clearUnlock();
+  openCodeModal(pre);
+};
+$('btnCopy').onclick=copyText;
+$('btnImg').onclick=showShare;
+$('btnClose').onclick=()=>{$('ov').classList.remove('show');$('ov').setAttribute('aria-hidden','true')};
+$('btnDl').onclick=()=>{
+  if(!window.__shareUrl) return;
+  const a=document.createElement('a');
+  a.href=window.__shareUrl;a.download='mental-age.png';
+  document.body.appendChild(a);a.click();a.remove();
+};
+
+fillDisclaimer($('startDisclaimer'));
+refreshLastBtn();
+(function bootFromUrl(){
+  try{
+    const u=new URL(location.href);
+    const c=normalizeCode(u.searchParams.get('code')||'');
+    if(c&&CODE_RE.test(c)){
+      $('codeInput').value=c;
+      if(!isUnlocked()) openCodeModal(c);
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
